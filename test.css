@@ -1,0 +1,286 @@
+/* =========================================================
+   Dynamic News Theme (RTL) - بدون تعديل HTML
+   يعمل على: h1,h2,h3,p,ul,table,form,input,button,img,a
+   ========================================================= */
+
+:root{
+  --bg: #070a12;
+  --paper: rgba(255,255,255,0.06);
+  --paper2: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.14);
+  --text: #eaf0ff;
+  --muted: rgba(234,240,255,0.74);
+  --primary: #3b82f6;
+  --primary2:#22c55e;
+  --danger:#ef4444;
+  --shadow: 0 18px 60px rgba(0,0,0,0.45);
+  --radius: 18px;
+  --max: 1100px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after{ box-sizing:border-box; }
+
+html{ font-size:16px; }
+body{
+  margin:0;
+  direction: rtl;
+  font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* خلفية أخبارية (بدون أي عنصر في HTML) */
+body::before{
+  content:"";
+  position: fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(900px 420px at 15% 0%, rgba(59,130,246,0.18), transparent 60%),
+    radial-gradient(700px 380px at 90% 15%, rgba(34,197,94,0.14), transparent 60%),
+    radial-gradient(900px 520px at 50% 100%, rgba(168,85,247,0.10), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.028) 0px,
+      rgba(255,255,255,0.028) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.018) 0px,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  filter: saturate(1.05) contrast(1.05);
+}
+
+/* طبقة noise لتعطي إحساس ورق جريدة */
+body::after{
+  content:"";
+  position: fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: .24;
+  pointer-events:none;
+}
+
+/* حاوية تلقائية: كل عناصر body تصير في المنتصف بعرض مريح */
+body > *{
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: 14px;
+}
+
+/* شريط علوي “يُضاف بالـ JS” — ستايل جاهز */
+.ticker{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(7,10,18,0.78);
+  backdrop-filter: blur(14px);
+}
+.ticker__label{
+  background: linear-gradient(135deg, var(--danger), #b91c1c);
+  color: white;
+  font-weight: 900;
+  padding: 6px 12px;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(239,68,68,0.25);
+}
+.ticker__track{
+  flex: 1;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+}
+.ticker__items{
+  display: inline-flex;
+  gap: 28px;
+  padding: 8px 14px;
+  white-space: nowrap;
+  animation: marquee 18s linear infinite;
+}
+.ticker__item{
+  color: var(--muted);
+  font-weight: 800;
+}
+.ticker__meta{
+  color: var(--muted);
+  font-weight: 900;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+}
+@keyframes marquee{
+  from { transform: translateX(-10%); }
+  to   { transform: translateX(65%); }
+}
+
+/* العنوان الرئيسي (h1 الموجود أصلاً) */
+h1{
+  margin: 16px auto 12px;
+  padding: 16px 14px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--primary), #0ea5e9);
+  box-shadow: var(--shadow);
+  font-size: 1.5rem;
+  letter-spacing: .2px;
+}
+
+/* العناوين الأخرى */
+h2,h3{
+  margin: 18px 0 10px;
+  padding: 0 2px;
+}
+h2{
+  font-size: 1.15rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+h3{ font-size: 1.02rem; color: var(--text); }
+
+/* الفقرات */
+p{ margin: 10px 0; color: var(--muted); }
+
+/* الصورة */
+img{
+  display:block;
+  width: min(420px, 100%);
+  height:auto;
+  margin: 12px auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* الروابط */
+a{
+  color: var(--text);
+  text-decoration:none;
+  font-weight: 900;
+  border-bottom: 1px dashed rgba(234,240,255,0.35);
+}
+a:hover{ border-bottom-style: solid; }
+
+/* قائمة الأخبار */
+ul{
+  list-style:none;
+  padding:0;
+  margin: 10px 0;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+}
+ul li{
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  position: relative;
+  overflow:hidden;
+}
+ul li::before{
+  content:"";
+  position:absolute;
+  inset: -30px -30px auto auto;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(59,130,246,0.22), transparent 60%);
+}
+ul li strong{ color: var(--text); }
+
+/* الجدول */
+.table-wrap{ overflow:auto; }
+table{
+  width:100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  border-radius: 14px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+th,td{
+  padding: 12px 10px;
+  text-align:center;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  font-weight: 800;
+  color: var(--muted);
+}
+th{
+  color: var(--text);
+  background: rgba(255,255,255,0.08);
+}
+tr:nth-child(even) td{
+  background: rgba(255,255,255,0.03);
+}
+
+/* الفورم */
+form{
+  margin: 14px 0 30px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--paper2);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display:grid;
+  gap: 10px;
+}
+label{
+  font-weight: 900;
+  color: var(--muted);
+  font-size: .95rem;
+}
+input[type="text"]{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.22);
+  color: var(--text);
+  outline:none;
+  font-weight: 800;
+}
+input[type="text"]:focus{
+  border-color: rgba(59,130,246,0.8);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.18);
+}
+
+/* زر */
+button{
+  border:0;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  cursor:pointer;
+  color:#fff;
+  background: linear-gradient(135deg, var(--primary), #2563eb);
+  box-shadow: 0 16px 40px rgba(37,99,235,0.28);
+  transition: transform .12s ease, filter .12s ease;
+}
+button:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+/* Responsive */
+@media (max-width: 720px){
+  ul{ grid-template-columns: 1fr; }
+}
