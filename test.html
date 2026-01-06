@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="test.css">
-
     <title>جريدة اليوم</title>
+
+    <!-- ملف CSS -->
+    <link rel="stylesheet" href="{{ asset('css/test.css') }}">
 </head>
 <body>
 
     <h1>جريدة اليوم</h1>
 
-    <!-- صورة من النت -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Newspaper_pic.png" 
-         alt="صورة جريدة" width="300">
+    <!-- صورة من الإنترنت -->
+    <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/6/65/Newspaper_pic.png" 
+        alt="صورة جريدة"
+        width="300"
+    >
 
     <p>
-        أهلاً بكم في جريدة اليوم الإلكترونية. نقدم لكم أهم الأخبار المحلية 
+        أهلاً بكم في جريدة اليوم الإلكترونية. نقدم لكم أهم الأخبار المحلية
         والعالمية لحظة بلحظة.
     </p>
 
     <p>
         لقراءة المزيد من الأخبار العاجلة، يمكنكم زيارة:
-        <a href="https://www.bbc.com/arabic" target="_blank">موقع BBC عربي</a>
+        <a href="https://www.bbc.com/arabic" target="_blank">
+            موقع BBC عربي
+        </a>
     </p>
 
     <h2>الأخبار الرئيسية</h2>
 
     <p>
-        شهدت البلاد اليوم ارتفاعاً ملحوظاً في درجات الحرارة، 
+        شهدت البلاد اليوم ارتفاعاً ملحوظاً في درجات الحرارة،
         مع توقعات باستمرار الموجة لعدة أيام قادمة.
     </p>
 
@@ -39,7 +45,7 @@
     </ul>
 
     <h3>جدول أسعار العملات</h3>
-    <table border="1">
+    <table border="1" cellpadding="8">
         <tr>
             <th>العملة</th>
             <th>السعر مقابل الدولار</th>
@@ -58,7 +64,6 @@
         </tr>
     </table>
 
-
     <!-- نموذج تواصل -->
     <h2>تواصل معنا</h2>
 
@@ -69,10 +74,11 @@
         <label>اكتب رسالتك:</label><br>
         <input type="text" name="message"><br><br>
 
-        <!-- زر إرسال -->
         <button type="submit">إرسال</button>
     </form>
-<script src="test.js"></script>
+
+    <!-- ملف JavaScript -->
+    <script src="{{ asset('js/test.js') }}"></script>
 
 </body>
 </html>
